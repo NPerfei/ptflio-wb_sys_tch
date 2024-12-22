@@ -129,13 +129,14 @@ span {
 
 .typing-text span {
     display: inline-block;
+    font-family: monospace;
+    font-size: 2.5rem;
     vertical-align: middle;
     border-right: 3px solid var(--main);
     width: 100%;
-    letter-spacing: 5px;
     white-space: nowrap;
     overflow: hidden;
-    animation: typing 2s steps(10), cursor 0.5s step-end infinite alternate;
+    animation: typing 3s steps(10), cursor 0.5s step-end infinite alternate;
 }
 
 @keyframes cursor {

@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --main: red;
+    --main: #0000CC;
+    --main_bg: #f4f4f4;
+    --main_dark: #E00000;
+    --main_bg_dark: #1a1a1a;
 }
 
 * {
@@ -15,6 +18,7 @@
 body {
     height: 100vh;
     overflow-x: hidden;
+    background-color: var(--main_bg);
 }
 
 header {
@@ -24,7 +28,7 @@ header {
     width: 100%;
     padding: 1rem 10%;
     padding-top: 20px;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,7 +68,6 @@ nav a:hover, nav a.active {
 
 section {
     border: 1px solid black;
-    min-height: 100vh; /*Probably need to remove this*/
     padding: 4rem 5% 4rem;
 }
 
@@ -95,6 +98,7 @@ section {
 .about-content h3 {
     font-size: 2.25rem;
     font-weight: 300;
+    margin-bottom: 15px;
 }
 
 span {
@@ -117,7 +121,7 @@ span {
 }
 
 .social-icons a:hover {
-    color: white;
+    color: var(--main_bg);
     background-color: var(--main);
     transform: scale(1.2) translateY(-5px);
     box-shadow: 0 0 25px solid var(--main);
@@ -136,7 +140,7 @@ span {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
-    animation: typing 3s steps(10), cursor 0.5s step-end infinite alternate;
+    animation: typing 8s steps(10) infinite, cursor 0.5s step-end infinite alternate;
 }
 
 @keyframes cursor {
@@ -146,7 +150,13 @@ span {
 }
 
 @keyframes typing {
-    from {
+    0% {
+        width: 0;
+    }
+    20%, 70% {
+        width: 100%;
+    }
+    90%, 100% {
         width: 0;
     }
 }

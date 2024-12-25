@@ -76,6 +76,7 @@ section {
     justify-content: center;
     align-items: center;
     gap: 8rem;
+    height: 100vh;
 }
 
 .about-img {
@@ -84,7 +85,7 @@ section {
 
 .about-img img {
     position: relative;
-    width: 32vw;
+    width: 35vw;
     border-radius: 50%;
     box-shadow: 0 0 25px solid var(--main);
 }
@@ -159,4 +160,47 @@ span {
     90%, 100% {
         width: 0;
     }
+}
+
+.project-list {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-card {
+    border: 2px solid var(--main);
+    height: 400px;
+    width: 300px;
+    border-radius: 20px;
+    transition: 0.3s ease;
+}
+  
+.project-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+  
+.project-image {
+    width: 100%;
+    height: 50%;
+    background-color: wheat;
+    border-radius: 20px 20px 0 0;
+}
+  
+.project-description {
+    padding: 1rem;
+    text-align: center;
+}
+  
+.project-link-wrapper {
+    text-decoration: none;
+    color: black;
+}
+
+  
+.project-link-wrapper:hover {
+
 }

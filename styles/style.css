@@ -2,9 +2,10 @@
 
 :root {
     --main: #0000CC;
-    --main_bg: #f4f4f4;
+    --main_bg: #fff;
     --main_dark: #E00000;
     --main_bg_dark: #1a1a1a;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -26,11 +27,12 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1rem 10%;
-    padding-top: 20px;
-    backdrop-filter: blur(3px);
+    padding: 1.5rem 10%;
+    /* backdrop-filter: blur(3px); */
+    background-color: #fff;
+    border-bottom: 1px solid black;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     z-index: 2;
 }
@@ -46,6 +48,7 @@ header {
     color: var(--main);
     cursor: pointer;
     transition: 0.3s ease;
+    opacity: 0;
 }
 
 .logo:hover {
@@ -67,16 +70,18 @@ nav a:hover, nav a.active {
 }
 
 section {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 4rem 5% 4rem;
+    scroll-margin-top: 30px;
 }
 
-.about-me {
+#about-me {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8rem;
     height: 100vh;
+    margin-top: 30px;
 }
 
 .about-img {
@@ -90,7 +95,7 @@ section {
     box-shadow: 0 0 25px solid var(--main);
 }
 
-.about-me .about-content h1 {
+#about-me .about-content h1 {
     font-size: 4rem;
     font-weight: 700;
     line-height: 1.3;
@@ -171,11 +176,12 @@ span {
 }
 
 .project-card {
-    border: 2px solid var(--main);
+    /* border: 2px solid var(--main); */
     height: 400px;
     width: 300px;
     border-radius: 20px;
     transition: 0.3s ease;
+    background-color: #f4f4f4;
 }
   
 .project-card:hover {
@@ -197,10 +203,5 @@ span {
   
 .project-link-wrapper {
     text-decoration: none;
-    color: black;
-}
-
-  
-.project-link-wrapper:hover {
-
+    color: inherit;
 }

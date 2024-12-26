@@ -75,11 +75,13 @@ section {
 }
 
 .section-title {
-    transition: 0.5s ease;
+    transition: 1s ease;
 }
 
 .section-title.active {
-    color: var(--main);
+    text-decoration: underline;
+    text-decoration-color: var(--main);
+    text-decoration-thickness: 5px;
 }
 
 #about-me {
@@ -193,7 +195,7 @@ span {
   
 .project-card:hover {
     transform: translateY(-15px);
-    box-shadow: 0 5px 5px -1px var(--main_shadow);
+    box-shadow: 0 15px 5px -1px var(--main_shadow);
 }
   
 .project-image {
@@ -211,6 +213,25 @@ span {
 .project-link-wrapper {
     text-decoration: none;
     color: inherit;
+    position: relative;
+}
+
+.mark {
+    height: 60%;
+    width: 15px;
+    background-color: #0000b8;
+    box-shadow: 0 10px 3px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0px;
+    transition: 0.5s ease;
+    border-radius:20px 0 0 0;
+}
+
+.project-card:hover + .mark {
+    transform: translateX(-35px);
+    opacity: 0;
+    box-shadow: none;
 }
 
 footer {

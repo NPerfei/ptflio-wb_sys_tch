@@ -1,7 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Press Start 2P", serif;
+}
+
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.start-modal {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 80px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#title {
+    font-size: 5rem;
+}
+
+span:nth-child(1) {
+    color: #00FFFF;
+}
+
+span:nth-child(2) {
+    color: #FF00FF;
+}
+
+span:nth-child(3) {
+    color: yellow;
+}
+
+.start-modal.hidden {
+    display: none;
+}
+
+.start-modal > p {
+    font-size: 3rem;
+    animation: pop 2s infinite;
+}
+
+.board {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    height: 500px;
+    width: 500px;
+    border: 5px solid white;
+    border-left: 6px solid white;
+}
+
+.cell {
+    position: relative;
+    border: 4px solid white;
+    font-size: 8rem;
+    margin: -2px;
+}
+
+.cell:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+.cell.occupied:hover {
+    background-color: black;
+    cursor: default;
+}
+
+.cell > * {
+    opacity: 0;
+    position: absolute;
+    top: 52%;
+    left: 52%;
+    transform: translate(-48%, -50%);
+    transition: 1s ease;
+}
+
+.cell.occupied > * {
+    opacity: 1;
+}
+
+.cell.win > * {
+    animation: lightUp 1.5s infinite;
+}
+
+.cell.draw > * {
+    animation: pop 1.5s infinite;
+}
+
+@keyframes lightUp {
+    0%, 35% {
+        color: black;
+    }
+    40%, 100% {
+        color: rgba(255, 255, 0, 1);
+    }
+}
+
+.player-indicator {
+    text-align: center;
+    margin: 25px;
+    font-size: 2rem;
+}
+
+.player-name.active {
+    animation: pop 1s infinite;
+}
+
+#p1, p.one {
+    color: #00FFFF;
+}
+
+#p2, p.two {
+    color: #FF00FF;
+}
+
+@keyframes pop {
+    0%, 35% {
+        opacity: 1;
+    }
+    40%, 100% {
+        opacity: 0;
+    }
+}
+
+p.win {
+    color: yellow !important;
+    font-size: larger;
+}
+
+#move-blocker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 99;   
+}
+
+#move-blocker.hidden {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    :root {
+        font-size: 14px;
+    }
+    .start-modal {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 560px) {
+    :root {
+        font-size: 12px;
+    }
+
+    .start-modal {
+        gap: 30px;
+    }
+
+    .board {
+        width: 400px;
+        height: 400px;
+        border-width: 4px;
+    }
+
+    .cell {
+        border-width: 3px;
+    }
+}
+
+@media (max-width: 410px) {
+    :root {
+        font-size: 8px;
+    }
+
+    .start-modal {
+        gap: 30px;
+    }
+
+    .board {
+        width: 300px;
+        height: 300px;
+        border-width: 3px;
+    }
+
+    .cell {
+        border-width: 2px;
+    }
 }

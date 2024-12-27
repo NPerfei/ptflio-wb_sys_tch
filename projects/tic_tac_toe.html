@@ -4,8 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="../styles/tic_tac_toe.css">
 </head>
 <body>
-    
+
+    <div class="start-modal">
+        <h1 id="title"><span>TIC</span> <span>TAC</span> <span>TOE</span></h1>
+        <p>Press Any Key To Start</p>
+    </div>
+
+    <div id="game">
+        <div class="player-indicator" id="p1">
+            <p class="player-name" id="p1">Player 1</p>
+        </div>
+        <div class="board">
+            <div class="cell" id="00"><p></p></div>
+            <div class="cell" id="01"><p></p></div>
+            <div class="cell" id="02"><p></p></div>
+            <div class="cell" id="10"><p></p></div>
+            <div class="cell" id="11"><p></p></div>
+            <div class="cell" id="12"><p></p></div>
+            <div class="cell" id="20"><p></p></div>
+            <div class="cell" id="21"><p></p></div>
+            <div class="cell" id="22"><p></p></div>
+        </div>
+        <div class="player-indicator" id="p2">
+            <p class="player-name" id="p2">Player 2</p>
+        </div>
+    </div>
+
+    <div id="move-blocker" class="hidden"></div>
+
+    <script src="../js/tic_tac_toe.js"></script>
 </body>
 </html>

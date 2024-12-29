@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bounding-box {
+    height: 600px;
+    width: 600px;
+    background-color: lightgreen;
+    display: grid;
+    grid-template-rows: repeat(30, 20px);
+    grid-template-columns: repeat(30, 20px);
+}
+
+#snake-head {
+    background-color: red;
+    grid-row: 15 / 16;
+    grid-column: 15 / 16;
+    z-index: 2;
+}
+
+.segment {
+    background-color: blue;
+}
+
+.food {
+    background-color: yellow;
+}
+
+.segment, .food {
+    height: 20px;
+    width: 20px;
+}

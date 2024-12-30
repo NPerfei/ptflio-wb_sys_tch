@@ -50,6 +50,7 @@ input[type="text"]:focus {
     cursor: pointer;
     transition: 0.2s ease;
     font-weight: 400;
+    outline: none;
 }
 
 #convert:hover {

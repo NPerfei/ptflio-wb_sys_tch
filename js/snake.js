@@ -4,45 +4,63 @@ let food = {"x": 12, "y": 12};
 let direction = "";
 let segments = [];
 let gameLoop = null;
+let score = 0;
+let highScore = 0;
+let prevScore = 0;
+let hasPlayedOnce = false;
+let foodSound = new Audio("../assets/sound/food.mp3");
+let gameOverSound = new Audio("../assets/sound/gameOver.mp3");
+let moveSound = new Audio("../assets/sound/move.mp3");
 
-console.log("Adding keydown listener...");
 document.addEventListener("keydown", setDirection);
 
 function setDirection(e) {
   pressed = e.key;
+  let validMove = false;
  
-  if (pressed == "w" && direction != "s") {
-    direction = pressed;
+  if ((pressed == "w" || pressed == "ArrowUp") && direction != "down") {
+    direction = "up";
+    validMove = true;
   }
-  else if (pressed == "a" && direction != "d") {
-    direction = pressed;
+  else if ((pressed == "a" || pressed == "ArrowLeft") && direction != "right") {
+    direction = "left";
+    validMove = true;
   }
-  else if (pressed == "s" && direction != "w") {
-    direction = pressed;
+  else if ((pressed == "s" || pressed == "ArrowDown") && direction != "up") {
+    direction = "down";
+    validMove = true;
   }
-  else if (pressed == "d" && direction != "a") {
-    direction = pressed;
+  else if ((pressed == "d" || pressed == "ArrowRight") && direction != "left") {
+    direction = "right";
+    validMove = true;
   }
-  
+  if (validMove) moveSound.play();
 }
 
 
-function move() { 
-  if (direction == "w") {
+function move() {
+  const prevHeadPos = {...head};
+
+  if (direction) {
+    document.getElementById("start-modal").classList.add("hidden");
+  }
+  
+  if (direction == "up") {
     head.y -= 1;
   }
-  else if (direction == "a") {
+  else if (direction == "left") {
     head.x -= 1;
   }
-  else if (direction == "s") {
+  else if (direction == "down") {
     head.y += 1;
   }
-  else if (direction == "d") {
+  else if (direction == "right") {
     head.x += 1;
   }
   
   if (head.x < 0 || head.x > 29 || head.y < 0 || head.y > 29) {
-    alert("Game Over!");
+    gameOverSound.play()
+    hasPlayedOnce = true;
     clearInterval(gameLoop);
     resetGame();
     return;
@@ -50,7 +68,8 @@ function move() {
   
   for (let segment of segments) {
     if (head.x === segment.x && head.y === segment.y) {
-      alert("Game Over!");
+      gameOverSound.play()
+      hasPlayedOnce = true;
       clearInterval(gameLoop);
       resetGame();
       return;
@@ -58,6 +77,10 @@ function move() {
   }
   
   if (head.x == food.x && head.y == food.y) {
+    foodSound.play()
+    score += 1;
+    document.getElementById("score").textContent = score;
+
     let tailSegment = segments.length > 0 ? {...segments[segments.length - 1]} : {...head};
     segments.push(tailSegment);
     
@@ -74,7 +97,7 @@ function move() {
   }
   
   if (segments.length > 0) {
-    segments[0] = {x: head.x, y: head.y};
+    segments[0] = {...prevHeadPos};
   }
   
   head_block.style.gridRowStart = head.y + 1;
@@ -133,11 +156,33 @@ function resetGame() {
     clearInterval(gameLoop);
     gameLoop = null;
   }
+
+  prevScore = score;
+  highScore = Math.max(highScore, prevScore);
+
+  let startModal = document.querySelector("#start-modal");
+
+  if (hasPlayedOnce) {
+    startModal.innerHTML = `<h2>High Score: ${highScore}</h2>
+                            <h2>Previous Score: ${prevScore}</h2>
+                            <p>Press WASD/Arrow Keys To Restart</p>`;
+  }
+  else {
+    startModal.innerHTML = `
+      <h1 id="title">SNAKE GAME</h1>
+      <p>Press WASD/Arrow Keys To Start</p>
+    `;
+  }
+
   
   head.x = 14;
   head.y = 14;
   direction = "";
   segments = [];
+  score = 0;
+
+  document.getElementById("score").textContent = score;
+  document.getElementById("high-score").textContent = highScore;
   
   head_block.style.gridRowStart = 15;
   head_block.style.gridRowEnd = 16;
@@ -147,7 +192,8 @@ function resetGame() {
   document.querySelectorAll(".segment:not(#snake-head)").forEach(segment => segment.remove());
   document.getElementById("food")?.remove();
   
-  placeFood();  // Place new food
+  placeFood();
+  document.getElementById("start-modal").classList.remove("hidden");
   gameLoop = setInterval(move, 200)
 }
 

@@ -7,10 +7,22 @@
     <link rel="stylesheet" href="../styles/snake.css">
 </head>
 <body>
+    <div id="start-modal">
+        <h1 id="title">SNAKE GAME</h1>
+        <p>Press WASD/Arrow Keys to Start</p>
+    </div>
+
     <div id="bounding-box">
         <div id="snake-head" class="segment"></div>
-      </div>
+    </div>
 
+    <div id="scoreboard">
+        <h4>Score:</h4>
+        <p id="score">0</p>
+
+        <h4 id="high-score-title">High Score:</h4>
+        <p id="high-score">0</p>
+    </div>
     <script src="../js/snake.js"></script>
 </body>
 </html>

@@ -84,3 +84,18 @@ select:focus {
 .warning-message-text.show {
     opacity: 1;
 }
+
+@media (max-width: 620px) {
+    .container {
+        width: 80%;
+    }
+
+    #input-area {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #convert {
+        margin-top: 20px;
+    }
+}
